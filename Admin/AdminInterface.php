@@ -24,7 +24,7 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 interface AdminInterface
 {

@@ -40,7 +40,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Security\Acl\Model\DomainObjectInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class Admin implements AdminInterface, DomainObjectInterface
 {
