@@ -22,7 +22,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\ValidatorInterface as LegacyValidatorInterface;
 
 class HelperController
 {
@@ -52,11 +53,15 @@ class HelperController
      * @param \Sonata\AdminBundle\Admin\AdminHelper           $helper
      * @param \Symfony\Component\Validator\ValidatorInterface $validator
      */
-    public function __construct(\Twig_Environment $twig, Pool $pool, AdminHelper $helper, ValidatorInterface $validator)
+    public function __construct(\Twig_Environment $twig, Pool $pool, AdminHelper $helper, $validator)
     {
         $this->twig      = $twig;
         $this->pool      = $pool;
         $this->helper    = $helper;
+        // TODO: Remove it when bumping requirements to SF 2.5+
+        if (!$validator instanceof ValidatorInterface && !$validator instanceof LegacyValidatorInterface) {
+            throw new \InvalidArgumentException('Argument 1 must be an instance of Symfony\Component\Validator\Validator\ValidatorInterface or Symfony\Component\Validator\ValidatorInterface');
+        }
         $this->validator = $validator;
     }
 
